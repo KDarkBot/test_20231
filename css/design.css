@@ -1,0 +1,65 @@
+@font-face {
+  font-family: "OKDDUNG";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/OKDDUNG.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PilseungGothic";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/PilseungGothic.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background-color: cornflowerblue;
+}
+h1 {
+  font-family: PilseungGothic;
+  text-align: center;
+  color: white;
+  font-size: 60px;
+  -webkit-text-stroke: 2px rgb(0, 225, 255);
+}
+.n_button {
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+  font-size: 60px;
+  font-family: OKDDUNG;
+  background-color: cadetblue;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px black;
+  margin-left: 20px;
+}
+#operatercotainer {
+  margin-top: 5%;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+#sign:focus {
+  outline: none;
+}
+
+#write {
+  font-family: OKDDUNG;
+  margin-left: 10px;
+  width: 470px;
+  height: 100px;
+  background-color: cadetblue;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px black;
+  font-size: 30px;
+}
+#write:focus {
+  outline: none;
+}
+
+.container {
+  text-align: center;
+}

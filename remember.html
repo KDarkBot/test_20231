@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/design.css" rel="stylesheet" />
+    <title>계산기</title>
+  </head>
+  <body>
+    <main>
+      <h1>석찬's 계산기</h1>
+      <div id="operatercotainer" class="container">
+        <textarea readonly wrap="off" id="write"></textarea>
+      </div>
+      <div class="container">
+        <button class="n_button" id="number_0">0</button>
+        <button class="n_button" id="number_1">1</button>
+        <button class="n_button" id="number_2">2</button>
+        <button class="n_button" id="plus">+</button>
+      </div>
+      <div class="container">
+        <button class="n_button" id="number_3">3</button>
+        <button class="n_button" id="number_4">4</button>
+        <button class="n_button" id="number_5">5</button>
+        <button class="n_button" id="minus">-</button>
+      </div>
+      <div class="container">
+        <button class="n_button" id="number_6">6</button>
+        <button class="n_button" id="number_7">7</button>
+        <button class="n_button" id="number_8">8</button>
+        <button class="n_button" id="multiple">x</button>
+      </div>
+      <div class="container">
+        <button class="n_button" id="number_9">9</button>
+        <button class="n_button" id="delbutton">c</button>
+        <button class="n_button" id="divide">/</button>
+        <button class="n_button" id="result">=</button>
+      </div>
+      <div id="operate"></div>
+      <script>
+        let nf = "";
+        let nt = "";
+
+        const $write = document.querySelector("#write");
+        let operatev;
+        const nclickevent = (event) => {
+          if ($write.value.indexOf("=") !== -1) {
+            console.log("test");
+            $write.value = "";
+            nt = "";
+            nf = "";
+            operatev = "";
+          }
+
+          if ($write.value[0] == 0) {
+            $write.value = "";
+            nf = "";
+            nt = "";
+            alert("첫 수를 0 이외에 수를 입력해주세요");
+          } else {
+            if (operatev) {
+              nt += event.target.textContent;
+              if ($write.value.indexOf("=") !== -1) {
+                console.log("test");
+                $write.value = "";
+              }
+            } else {
+              nf += event.target.textContent;
+            }
+            $write.value += event.target.textContent;
+          }
+        };
+
+        const operateevent = (event) => {
+          if (event.target.textContent == "=") {
+            if (operatev == "+") {
+              $write.value = nf + "+" + nt + "=" + (Number(nf) + Number(nt));
+              nt = "";
+              nt = "";
+              operatev = "";
+            } else if (operatev == "-") {
+              $write.value = nf + "-" + nt + "=" + (Number(nf) - Number(nt));
+              nt = "";
+              nt = "";
+              operatev = "";
+            } else if (operatev == "x") {
+              $write.value = nf + "x" + nt + "=" + Number(nf) * Number(nt);
+              nt = "";
+              nt = "";
+              operatev = "";
+            } else if (operatev == "/") {
+              $write.value = nf + "/" + nt + "=" + Number(nf) / Number(nt);
+              nt = "";
+              nt = "";
+              operatev = "";
+            }
+          } else if (event.target.textContent == "c") {
+            nf = "";
+            nt = "";
+            operatev = "";
+            $write.value = "";
+          } else if (event.target.textContent == "+") {
+            $write.value = nf + "+";
+            operatev = "+";
+          } else if (event.target.textContent == "-") {
+            $write.value = nf + "-";
+            operatev = "-";
+          } else if (event.target.textContent == "x") {
+            $write.value = nf + "x";
+            operatev = "x";
+          } else if (event.target.textContent == "/") {
+            $write.value = nf + "/";
+            operatev = "/";
+          }
+        };
+
+        document
+          .querySelector("#number_0")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_1")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_2")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_3")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_4")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_5")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_6")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_7")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_8")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#number_9")
+          .addEventListener("click", nclickevent);
+        document
+          .querySelector("#delbutton")
+          .addEventListener("click", operateevent);
+        document.querySelector("#plus").addEventListener("click", operateevent);
+        document
+          .querySelector("#minus")
+          .addEventListener("click", operateevent);
+        document
+          .querySelector("#multiple")
+          .addEventListener("click", operateevent);
+        document
+          .querySelector("#divide")
+          .addEventListener("click", operateevent);
+        document
+          .querySelector("#result")
+          .addEventListener("click", operateevent);
+      </script>
+    </main>
+  </body>
+</html>
