@@ -2,7 +2,7 @@ let nf = "";
 let nt = "";
 
 const $write = document.querySelector("#write");
-let operatev;
+let operatev = "";
 const nclickevent = (event) => {
   if ($write.value.indexOf("=") !== -1) {
     console.log("test");
@@ -12,17 +12,20 @@ const nclickevent = (event) => {
     operatev = "";
   }
 
-  if ($write.value[0] == 0) {
+  if ($write.value[0] == 0 || $write.value[0] == ".") {
     $write.value = "";
     nf = "";
     nt = "";
-    alert("첫 수를 0 이외에 수를 입력해주세요");
+    alert("첫 수를 0 과 . 이외에 자연수를 입력해주세요");
   } else {
     if (operatev) {
       nt += event.target.textContent;
       if ($write.value.indexOf("=") !== -1) {
         console.log("test");
         $write.value = "";
+      } else if ($write.value.indexOf(operatev + ".") !== -1) {
+        $write.value = nf + operatev;
+        alert("'.'자연수 불가");
       }
     } else {
       nf += event.target.textContent;
@@ -90,3 +93,27 @@ document.querySelector("#minus").addEventListener("click", operateevent);
 document.querySelector("#multiple").addEventListener("click", operateevent);
 document.querySelector("#divide").addEventListener("click", operateevent);
 document.querySelector("#result").addEventListener("click", operateevent);
+
+const backevent = () => {
+  if (nf !== "") {
+    if (operatev === "") {
+      nf = nf.slice(0, -1);
+      $write.value = nf;
+      console.log(nf);
+    }
+  }
+  if (operatev !== "") {
+    if (nt === "") {
+      operatev = "";
+      $write.value = nf + operatev;
+    }
+  }
+  if (nt !== "") {
+    nt = nt.slice(0, -1);
+    $write.value = nf + operatev + nt;
+    console.log(nf);
+  }
+};
+
+document.querySelector("#pointbutton").addEventListener("click", nclickevent);
+document.querySelector("#backbutton").addEventListener("click", backevent);
